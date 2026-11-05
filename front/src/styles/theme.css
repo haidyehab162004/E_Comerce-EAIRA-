@@ -1,0 +1,144 @@
+/* =========================================================================
+   AEIRA — Design tokens (single source of truth)
+   -------------------------------------------------------------------------
+   كل ألوان الموقع والخطوط هنا. عدّل القيم من هذا الملف فقط.
+   - :root            → الوضع الفاتح (light)
+   - html[data-theme="dark"] → الوضع الداكن (dark)
+   الأسماء بتتحوّل تلقائيًا لكلاسات Tailwind في index.css
+   (مثال: --aeira-bg  →  bg-bg / text-bg ...)
+   ========================================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* ---------- Fonts ---------- */
+  --aeira-font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --aeira-font-serif: 'Playfair Display', Georgia, serif;
+
+  /* ---------- Backgrounds ---------- */
+  --aeira-bg: #fcfbf8;            /* خلفية الصفحة */
+  --aeira-surface: #ffffff;       /* كروت / نافبار / قوائم */
+  --aeira-surface-warm: #fffdfa;  /* كروت دافئة */
+  --aeira-surface-alt: #f3f1ec;   /* خلفية قسم */
+  --aeira-surface-muted: #f5f3ee; /* خلفية خفيفة */
+
+  /* ---------- Text ---------- */
+  --aeira-ink: #202622;           /* نص أساسي */
+  --aeira-ink-soft: #3a423d;      /* نص ثانوي */
+  --aeira-muted: #626b65;         /* نص خفيف */
+  --aeira-muted-soft: #8a8f8a;    /* نص خفيف جدًا */
+
+  /* ---------- Borders ---------- */
+  --aeira-line: #e8e5de;
+  --aeira-line-strong: #e2dfd7;
+
+  /* ---------- Brand ---------- */
+  --aeira-primary: #173a33;       /* أزرار وخلفيات */
+  --aeira-primary-ink: #173a33;   /* نص بلون البراند */
+  --aeira-primary-light: #244c43; /* hover */
+  --aeira-primary-tint: #e9eee9;  /* خلفية خفيفة */
+  --aeira-on-primary: #d3ded8;    /* نص فاتح فوق البراند */
+  --aeira-accent: #b88d63;
+  --aeira-accent-tint: #f8f0df;
+  --aeira-sale: #8d3d2b;
+  --aeira-sale-bg: #8d3d2b;
+
+  /* ---------- Decorative blocks ---------- */
+  --aeira-stories: #252522;       /* خلفية قسم الستوريز */
+  --aeira-sale-deep: #7c3425;     /* خلفية بانر التخفيضات */
+  --aeira-swatch-fallback: #00332b;
+
+  /* ---------- Misc ---------- */
+  --aeira-focus: #54776d;
+  --aeira-overlay: rgba(0, 0, 0, 0.55);
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* ---------- Backgrounds ---------- */
+  --aeira-bg: #0e1412;
+  --aeira-surface: #151c19;
+  --aeira-surface-warm: #18201d;
+  --aeira-surface-alt: #1a2320;
+  --aeira-surface-muted: #1d2724;
+
+  /* ---------- Text ---------- */
+  --aeira-ink: #e9efeb;
+  --aeira-ink-soft: #cfd9d4;
+  --aeira-muted: #9daca5;
+  --aeira-muted-soft: #7d8c86;
+
+  /* ---------- Borders ---------- */
+  --aeira-line: #27322e;
+  --aeira-line-strong: #33403b;
+
+  /* ---------- Brand ---------- */
+  --aeira-primary: #2f6b5c;
+  --aeira-primary-ink: #a9d3c4;
+  --aeira-primary-light: #3b8171;
+  --aeira-primary-tint: #17241f;
+  --aeira-on-primary: #cfe6dc;
+  --aeira-accent: #d5a97b;
+  --aeira-accent-tint: #2a2118;
+  --aeira-sale: #e39077;
+  --aeira-sale-bg: #6e3226;
+
+  /* ---------- Decorative blocks ---------- */
+  --aeira-stories: #101614;
+  --aeira-sale-deep: #5a2a20;
+  --aeira-swatch-fallback: #00332b;
+
+  /* ---------- Misc ---------- */
+  --aeira-focus: #7ab8a6;
+  --aeira-overlay: rgba(0, 0, 0, 0.7);
+
+  /* ---------- Tailwind gray palette — inverted for dark mode ---------- */
+  --color-gray-50: #111815;
+  --color-gray-100: #16201c;
+  --color-gray-200: #22302b;
+  --color-gray-300: #2f3f39;
+  --color-gray-400: #5f6f69;
+  --color-gray-500: #8b9b95;
+  --color-gray-600: #a9b7b1;
+  --color-gray-700: #c3cfc9;
+  --color-gray-800: #dce4e0;
+  --color-gray-900: #eff4f1;
+  --color-gray-950: #f8fbf9;
+}
+
+/* Smooth switch between themes (يتجاهلها من يفضّل تقليل الحركة) */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-anim,
+  html.theme-anim body,
+  html.theme-anim body * {
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+}
+
+/* =========================================================================
+   Arabic typography
+   -------------------------------------------------------------------------
+   خطوط عربية مخصصة + إلغاء تتبّع الحروف (letter-spacing) لأنه يفكّ اتصال
+   الحروف العربية ويجعلها تبدو مقطّعة.
+   ========================================================================= */
+html[lang='ar'] {
+  --aeira-font-sans: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+  --aeira-font-serif: 'Amiri', 'Tajawal', Georgia, serif;
+}
+
+html[lang='ar'] *,
+html[lang='ar'] *::before,
+html[lang='ar'] *::after {
+  letter-spacing: 0 !important;
+}
+
+html[lang='ar'] h1,
+html[lang='ar'] h2,
+html[lang='ar'] h3,
+html[lang='ar'] h4,
+html[lang='ar'] h5,
+html[lang='ar'] h6 {
+  font-weight: 700;
+  line-height: 1.35;
+}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/shop.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AEIRA — Discover luxury fashion. Curated collections of premium clothing, accessories, and more." />
+    <meta name="theme-color" content="#173A33" />
+    <link rel="preload" as="image" href="/images/womens-editorial-1.jpg" fetchpriority="high" />
+    <script>
+      // ضبط الثيم قبل أول رسم لتجنّب وميض الوضع الفاتح
+      (function () {
+        try {
+          var saved = localStorage.getItem('aeira-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved === 'dark' || saved === 'light' ? saved : (prefersDark ? 'dark' : 'light');
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'dark' ? '#0e1412' : '#173a33');
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+      // ضبط اللغة والاتجاه قبل أول رسم
+      try {
+        var lang = localStorage.getItem('aeira-lang') === 'ar' ? 'ar' : 'en';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      } catch (e) { /* ignore */ }
+    </script>
+    <style>
+      #hero-first-paint{position:fixed;inset:0;z-index:60;background:#fcfbf8;color:#fff;transition:opacity .18s ease,visibility .18s ease}
+      .app-ready #hero-first-paint,.not-home #hero-first-paint{opacity:0;visibility:hidden;pointer-events:none}
+      .first-paint-nav{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 max(24px,calc((100vw - 1280px)/2));background:#fcfbf8;border-bottom:1px solid #e8e5de;color:#173a33}
+      .first-paint-brand{font:700 24px Georgia,serif;letter-spacing:.2em;text-decoration:none;color:inherit}
+      .first-paint-links{display:flex;gap:36px;align-items:center}
+      .first-paint-links a,.first-paint-login{font:700 10px system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#68716c;text-decoration:none}
+      .first-paint-login{padding:14px 20px;background:#111827;color:#fff}
+      .first-paint-slide{position:relative;height:calc(100svh - 5rem);min-height:520px;max-height:900px;overflow:hidden;background:#d8d4cc}
+      .first-paint-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%}
+      .first-paint-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.1) 55%,transparent)}
+      .first-paint-copy{position:absolute;left:0;right:0;bottom:0;padding:0 64px 80px}
+      .first-paint-eyebrow{margin:0 0 12px;font:600 10px system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+      .first-paint-title{max-width:760px;margin:0;font:400 clamp(40px,6vw,72px)/1.08 Georgia,serif}
+      .first-paint-detail{margin:14px 0 0;font:400 16px/1.5 system-ui,sans-serif;color:rgba(255,255,255,.85)}
+      .first-paint-cta{display:inline-block;margin-top:28px;padding:16px 24px;background:white;color:#111827;font:600 10px system-ui,sans-serif;letter-spacing:.18em;text-decoration:none;text-transform:uppercase}
+      @media(max-width:1023px){.first-paint-links{display:none}.first-paint-nav{padding:0 20px}.first-paint-login{display:none}.first-paint-copy{padding:0 24px 80px}.first-paint-detail{font-size:14px}}
+      @media(max-width:600px){.first-paint-slide{min-height:520px}.first-paint-copy{padding-bottom:84px}.first-paint-title{font-size:40px}}
+      @media(prefers-reduced-motion:reduce){#hero-first-paint{transition:none}}
+      html[data-theme="dark"] #hero-first-paint{background:#0e1412}
+      html[data-theme="dark"] .first-paint-nav{background:#0e1412;border-bottom-color:#27322e;color:#a9d3c4}
+      html[data-theme="dark"] .first-paint-links a{color:#9daca5}
+      html[data-theme="dark"] .first-paint-slide{background:#27322e}
+    </style>
+    <script>if(location.pathname!=='/')document.documentElement.classList.add('not-home')</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+     
+    <title>AEIRA — Luxury Fashion</title>
+  </head>
+  <body>
+    <div id="hero-first-paint">
+      <header class="first-paint-nav">
+        <a class="first-paint-brand" href="/" aria-label="AEIRA home">AEIRA</a>
+        <nav class="first-paint-links" aria-label="Main navigation">
+          <a href="/">Home</a><a href="/shop">Shop</a><a href="/about">About Us</a><a href="/product/random">Product Details</a>
+        </nav>
+        <a class="first-paint-login" href="/login">Login</a>
+      </header>
+      <main class="first-paint-slide">
+        <img class="first-paint-image" src="/images/womens-editorial-1.jpg" alt="Woman wearing a cream dress in a warm neutral interior" fetchpriority="high" decoding="sync" />
+        <div class="first-paint-shade" aria-hidden="true"></div>
+        <div class="first-paint-copy">
+          <p class="first-paint-eyebrow">01 · The soft edit</p>
+          <h1 class="first-paint-title">Ease into the everyday</h1>
+          <p class="first-paint-detail">Soft tones and relaxed shapes.</p>
+          <a class="first-paint-cta" href="/shop">Explore the collection →</a>
+        </div>
+      </main>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

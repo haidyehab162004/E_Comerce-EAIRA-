@@ -1,0 +1,210 @@
+@import "tailwindcss";
+@import "./styles/theme.css";
+
+/* =========================================================================
+   كل الألوان والخطوط بقت في styles/theme.css
+   هنا بنربطها بكاسات Tailwind بس.
+   ========================================================================= */
+@theme inline {
+  /* Fonts */
+  --font-sans: var(--aeira-font-sans);
+  --font-serif: var(--aeira-font-serif);
+
+  /* Brand */
+  --color-primary: var(--aeira-primary);
+  --color-primary-ink: var(--aeira-primary-ink);
+  --color-primary-light: var(--aeira-primary-light);
+  --color-primary-tint: var(--aeira-primary-tint);
+  --color-on-primary: var(--aeira-on-primary);
+  --color-accent: var(--aeira-accent);
+  --color-accent-tint: var(--aeira-accent-tint);
+  --color-sale: var(--aeira-sale);
+  --color-sale-bg: var(--aeira-sale-bg);
+  --color-stories: var(--aeira-stories);
+  --color-sale-deep: var(--aeira-sale-deep);
+  --color-secondary: var(--aeira-surface-alt);
+
+  /* Surfaces */
+  --color-bg: var(--aeira-bg);
+  --color-surface: var(--aeira-surface);
+  --color-surface-warm: var(--aeira-surface-warm);
+  --color-surface-alt: var(--aeira-surface-alt);
+  --color-surface-muted: var(--aeira-surface-muted);
+
+  /* Text */
+  --color-ink: var(--aeira-ink);
+  --color-ink-soft: var(--aeira-ink-soft);
+  --color-muted: var(--aeira-muted);
+  --color-muted-soft: var(--aeira-muted-soft);
+
+  /* Borders */
+  --color-line: var(--aeira-line);
+  --color-line-strong: var(--aeira-line-strong);
+
+  /* Focus */
+  --color-focus: var(--aeira-focus);
+}
+
+:root {
+  background-color: var(--aeira-bg);
+  color: var(--aeira-ink);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--aeira-bg);
+  color: var(--aeira-ink);
+}
+
+::selection {
+  background: var(--aeira-primary-tint);
+  color: var(--aeira-primary-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--aeira-focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), serif;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Toast slide-in animation */
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Bottom sheet (mobile account menu) */
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* Page transition */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Stagger children fade-in */
+@keyframes itemFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.stagger-item {
+  opacity: 0;
+  animation: itemFadeUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.05s; }
+.stagger-item:nth-child(2) { animation-delay: 0.10s; }
+.stagger-item:nth-child(3) { animation-delay: 0.15s; }
+.stagger-item:nth-child(4) { animation-delay: 0.20s; }
+.stagger-item:nth-child(5) { animation-delay: 0.25s; }
+.stagger-item:nth-child(6) { animation-delay: 0.30s; }
+.stagger-item:nth-child(7) { animation-delay: 0.35s; }
+.stagger-item:nth-child(8) { animation-delay: 0.40s; }
+
+/* ===== Login Card Pop Animation ===== */
+@keyframes cardPop {
+  0%   { opacity: 0; transform: scale(0.85) translateY(30px); }
+  50%  { transform: scale(1.02) translateY(-4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.login-card {
+  animation: cardPop 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ===== Guest Login Overlay + Arrow ===== */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: var(--aeira-overlay);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+  animation: overlayFadeIn 0.3s ease-out both;
+}
+
+.login-btn-highlight {
+  position: relative;
+  z-index: 9999 !important;
+}
+
+.login-arrow-indicator {
+  position: fixed;
+  z-index: 9999;
+  transform: translateX(-50%);
+  pointer-events: none;
+  animation: arrowFadeIn 0.4s ease-out both;
+}
+
+.login-arrow-indicator svg {
+  animation: arrowBounce 0.9s ease-in-out infinite;
+  filter: drop-shadow(0 2px 12px rgba(255, 255, 255, 0.4));
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(12px); }
+}
+
+@keyframes arrowFadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ===== Product Carousel — Hide Scrollbar ===== */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
